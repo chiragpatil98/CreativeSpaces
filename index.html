@@ -1,14 +1,671 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My GitHub Website</title>
-</head>
-<body style="text-align: center; font-family: sans-serif; padding: 50px; background-color: #f0f8ff;">
-    
-    <h1>Hello, World!</h1>
-    <p>I built this website directly in GitHub.</p>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Creative Spaces is an interior design and architecture portfolio website template for showcasing projects and services."
+  />
+  <title>Creative Spaces | Interior Design & Architecture</title>
+  <style>
+    :root {
+      --bg: #f8f5f1;
+      --surface: #ffffff;
+      --text: #222222;
+      --muted: #6d6a66;
+      --primary: #7f5f47;
+      --primary-dark: #664734;
+      --accent: #c9a66b;
+      --line: #e8e2db;
+      --radius: 14px;
+      --shadow: 0 10px 25px rgba(34, 34, 34, 0.08);
+      --max: 1120px;
+    }
 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+      border-radius: 12px;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(92%, var(--max));
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: 5rem 0;
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 2.7vw, 2.2rem);
+      margin-bottom: 0.9rem;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      max-width: 680px;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      padding: 0.78rem 1.35rem;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: 0.25s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: #fff;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(248, 245, 241, 0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      min-height: 72px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .brand span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #474340;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .hero {
+      padding: 6rem 0 4rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      max-width: 58ch;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .quick-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.8rem;
+      max-width: 460px;
+    }
+
+    .stat {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 0.8rem;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+
+    .hero-image {
+      position: relative;
+    }
+
+    .hero-image::after {
+      content: "Award-winning studio";
+      position: absolute;
+      bottom: 0.9rem;
+      left: 0.9rem;
+      background: rgba(34, 34, 34, 0.8);
+      color: #fff;
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+    }
+
+    .services-grid,
+    .projects-grid,
+    .steps,
+    .testimonials,
+    .footer-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .services-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      padding: 1.2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin: 0.35rem 0 0.5rem;
+      font-size: 1.08rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .projects-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .project-card {
+      overflow: hidden;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .project-card .content {
+      padding: 1rem;
+    }
+
+    .project-card small {
+      color: var(--primary);
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+    }
+
+    .project-card h3 {
+      margin: 0.4rem 0;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .steps {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .step {
+      background: var(--surface);
+      padding: 1rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+    }
+
+    .step span {
+      width: 34px;
+      height: 34px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 800;
+      margin-bottom: 0.8rem;
+    }
+
+    .testimonials {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    blockquote {
+      font-size: 0.98rem;
+      color: #3e3a37;
+      margin-bottom: 0.85rem;
+    }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+
+    form {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1rem;
+      box-shadow: var(--shadow);
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin: 0.7rem 0 0.35rem;
+      font-size: 0.93rem;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid #d4ccc4;
+      border-radius: 10px;
+      padding: 0.72rem;
+      font: inherit;
+      background: #fff;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .contact-info {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-info p {
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 2rem 0;
+      margin-top: 1rem;
+      background: #f1ebe4;
+    }
+
+    .footer-grid {
+      grid-template-columns: 2fr 1fr 1fr;
+      align-items: start;
+    }
+
+    .footer-grid ul {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 0.5rem;
+    }
+
+    .footer-grid li {
+      margin-bottom: 0.35rem;
+      color: #4e4945;
+    }
+
+    .copyright {
+      margin-top: 1.2rem;
+      color: #5b5652;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .contact-wrap,
+      .services-grid,
+      .projects-grid,
+      .steps,
+      .testimonials,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 4.7rem;
+      }
+
+      .quick-stats {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .menu-btn {
+        display: inline-block;
+      }
+
+      .nav-links {
+        position: absolute;
+        right: 4%;
+        top: 72px;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 0.8rem;
+        flex-direction: column;
+        align-items: flex-start;
+        width: min(280px, 92vw);
+        box-shadow: var(--shadow);
+        display: none;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav container">
+      <a class="brand" href="#home">Creative <span>Spaces</span></a>
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#contact" class="btn" style="padding: 0.45rem 0.95rem">Start Project</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <h1>Interior Design & Architecture That Turns Ideas Into Living Spaces.</h1>
+          <p>
+            Creative Spaces is a complete portfolio website template for interior designers and architects.
+            Showcase your signature projects, explain your process, and capture client inquiries in one clean,
+            professional web presence.
+          </p>
+          <div class="hero-cta">
+            <a href="#projects" class="btn">View Portfolio</a>
+            <a href="#contact" class="btn btn-secondary">Book Consultation</a>
+          </div>
+          <div class="quick-stats" aria-label="Studio highlights">
+            <div class="stat"><strong>120+</strong>Projects</div>
+            <div class="stat"><strong>12</strong>Years Experience</div>
+            <div class="stat"><strong>96%</strong>Client Satisfaction</div>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img
+            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80"
+            alt="Warm contemporary living room designed by Creative Spaces"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container">
+        <h2 class="section-title">About Creative Spaces</h2>
+        <p class="section-subtitle">
+          We combine architectural planning, interior styling, and material strategy to create beautiful,
+          functional environments. This template can be adapted as your future public portfolio website.
+        </p>
+      </div>
+    </section>
+
+    <section id="services" class="section" style="background: #f4efe9; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line)">
+      <div class="container">
+        <h2 class="section-title">Services</h2>
+        <p class="section-subtitle">Present your design offerings clearly so potential clients can choose the right package.</p>
+        <div class="services-grid">
+          <article class="card">
+            <small>01</small>
+            <h3>Residential Interior Design</h3>
+            <p>Space planning, furniture layout, palette creation, and styling for homes, villas, and apartments.</p>
+          </article>
+          <article class="card">
+            <small>02</small>
+            <h3>Architectural Concept Development</h3>
+            <p>Early-stage concept sketches, façade ideas, zoning support, and functionality-first planning.</p>
+          </article>
+          <article class="card">
+            <small>03</small>
+            <h3>Renovation & Turnkey Execution</h3>
+            <p>Vendor coordination, timeline management, site supervision, and handover-ready delivery.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="container">
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-subtitle">Use this section to publish your best portfolio work with visuals and concise case-study descriptions.</p>
+        <div class="projects-grid">
+          <article class="project-card">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80" alt="Minimalist apartment interior" />
+            <div class="content">
+              <small>Residential</small>
+              <h3>Urban Minimal Apartment</h3>
+              <p>A compact home optimized with warm lighting, hidden storage, and clean architectural lines.</p>
+            </div>
+          </article>
+          <article class="project-card">
+            <img src="https://images.unsplash.com/photo-1616594039964-3d5d0ec2f00f?auto=format&fit=crop&w=900&q=80" alt="Boutique hotel lounge" />
+            <div class="content">
+              <small>Hospitality</small>
+              <h3>Boutique Hotel Lounge</h3>
+              <p>Layered textures and material harmony transformed this lounge into a memorable guest space.</p>
+            </div>
+          </article>
+          <article class="project-card">
+            <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80" alt="Modern villa exterior" />
+            <div class="content">
+              <small>Architecture</small>
+              <h3>Contemporary Villa Front</h3>
+              <p>A façade concept balancing natural stone, glass, and shade control for modern living comfort.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="process" class="section" style="background: #f4efe9; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line)">
+      <div class="container">
+        <h2 class="section-title">Design Process</h2>
+        <p class="section-subtitle">A simple four-step method that builds client trust and keeps project execution transparent.</p>
+        <div class="steps">
+          <div class="step"><span>1</span><h3>Discovery</h3><p>Understand client goals, style preferences, and site constraints.</p></div>
+          <div class="step"><span>2</span><h3>Concept</h3><p>Create mood boards, layouts, and architectural direction.</p></div>
+          <div class="step"><span>3</span><h3>Development</h3><p>Finalize drawings, materials, and implementation plan.</p></div>
+          <div class="step"><span>4</span><h3>Execution</h3><p>Coordinate with vendors and supervise finishing details.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Client Testimonials</h2>
+        <p class="section-subtitle">Social proof helps your future portfolio website convert visitors into leads.</p>
+        <div class="testimonials">
+          <article class="card">
+            <blockquote>“Creative Spaces turned our empty apartment into a calm, premium home that feels uniquely ours.”</blockquote>
+            <strong>— Sarah & Daniel, Homeowners</strong>
+          </article>
+          <article class="card">
+            <blockquote>“Professional, detail-oriented, and incredibly collaborative from concept to final handover.”</blockquote>
+            <strong>— R.K. Mehta, Developer</strong>
+          </article>
+          <article class="card">
+            <blockquote>“Their architectural and interior thinking together saved us time, budget, and redesign cycles.”</blockquote>
+            <strong>— Amina Noor, Studio Client</strong>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section" style="padding-top: 3rem;">
+      <div class="container contact-wrap">
+        <div>
+          <h2 class="section-title">Start Your Project</h2>
+          <p class="section-subtitle">
+            Replace this with your real business details and publish via GitHub Pages, Netlify, or Vercel when ready.
+          </p>
+          <div class="contact-info">
+            <p><strong>Email:</strong> hello@creativespaces.studio</p>
+            <p><strong>Phone:</strong> +1 (000) 000-0000</p>
+            <p><strong>Location:</strong> New York, United States</p>
+            <p><strong>Hours:</strong> Monday–Friday, 9:00 AM to 6:00 PM</p>
+          </div>
+        </div>
+        <form>
+          <label for="name">Full Name</label>
+          <input id="name" name="name" placeholder="Enter your name" required />
+
+          <label for="email">Email Address</label>
+          <input id="email" type="email" name="email" placeholder="name@example.com" required />
+
+          <label for="service">Service Needed</label>
+          <select id="service" name="service">
+            <option>Interior Design</option>
+            <option>Architectural Design</option>
+            <option>Renovation / Turnkey</option>
+          </select>
+
+          <label for="message">Project Details</label>
+          <textarea id="message" name="message" placeholder="Tell us about your project"></textarea>
+
+          <button class="btn" type="submit" style="margin-top: 0.9rem; width: 100%">Send Inquiry</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <a class="brand" href="#home">Creative <span>Spaces</span></a>
+        <p style="margin-top: 0.5rem; color: #5a5551; max-width: 55ch;">
+          A professional interior designer and architect portfolio template. Customize with your images,
+          project data, and contact details before publishing.
+        </p>
+      </div>
+      <div>
+        <strong>Quick Links</strong>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <strong>Follow</strong>
+        <ul>
+          <li>Instagram</li>
+          <li>Behance</li>
+          <li>LinkedIn</li>
+        </ul>
+      </div>
+    </div>
+    <div class="container copyright">© <span id="year"></span> Creative Spaces. All rights reserved.</div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+    const year = document.getElementById("year");
+
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => navLinks.classList.remove("open"));
+    });
+
+    year.textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
