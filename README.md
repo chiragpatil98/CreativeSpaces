@@ -20,6 +20,7 @@ python3 -m http.server 8080
 
 Then open: <http://localhost:8080>
 
+<<<<<<< codex/create-web-project-for-creative-spaces-9o8wbg
 ## How to add your own images
 
 ### 1) Create folders for images
@@ -65,6 +66,8 @@ git push
 
 Then redeploy to GitHub Pages / Netlify / Vercel.
 
+=======
+>>>>>>> main
 ## Customize before publishing
 - Replace demo images with your own portfolio images
 - Update project descriptions and client testimonials
